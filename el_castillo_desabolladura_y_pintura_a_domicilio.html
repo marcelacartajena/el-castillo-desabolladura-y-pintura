@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Castillo | Desabolladura y Pintura a Domicilio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fdf8f6',
+                            100: '#f2e8e5',
+                            500: '#d97706', // Amber accent for premium look
+                            600: '#b45309',
+                            900: '#1e1e24', // Deep metallic dark slate
+                            950: '#111116',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(17, 17, 22, 0.85), rgba(17, 17, 22, 0.95)), url('https://placehold.co/1920x1080/1e1e24/ffffff?text=Taller+Movil+El+Castillo') center/cover no-repeat;
+        }
+    </style>
+</head>
+<body class="bg-brand-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-950/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <!-- Custom SVG Logo -->
+                <div class="bg-gradient-to-tr from-brand-500 to-amber-400 p-2 rounded-2xl shadow-lg shadow-brand-500/20 flex items-center justify-center w-12 h-12">
+                    <svg viewBox="0 0 24 24" fill="none" class="w-7 h-7 text-brand-950" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-white flex items-center gap-1.5">
+                        EL CASTILLO <span class="text-xs px-2 py-0.5 rounded bg-brand-500/20 text-brand-400 border border-brand-500/30">Taller & Móvil</span>
+                    </span>
+                    <span class="block text-xs font-medium text-brand-500 uppercase tracking-widest">Desabolladura & Pintura Profesional</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#inicio" class="hover:text-brand-500 transition">Inicio</a>
+                <a href="#valores" class="hover:text-brand-500 transition">Valores</a>
+                <a href="#servicios" class="hover:text-brand-500 transition">Servicios</a>
+                <a href="#galeria" class="hover:text-brand-500 transition">Galería</a>
+                <a href="#proceso" class="hover:text-brand-500 transition">Cómo Trabajamos</a>
+                <a href="#testimonios" class="hover:text-brand-500 transition">Opiniones</a>
+            </nav>
+
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="tel:56939610596" class="text-white font-bold text-sm bg-brand-900 px-4 py-2 rounded-xl border border-slate-800 flex items-center gap-2 hover:border-brand-500 transition">
+                    <i class="fa-solid fa-phone text-brand-500"></i> +56 9 3961 0596
+                </a>
+                <button onclick="openQuoteModal()" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2">
+                    <i class="fa-solid fa-calculator"></i> Cotizar Online
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="block py-2 text-slate-300 hover:text-brand-500">Inicio</a>
+            <a href="#valores" class="block py-2 text-slate-300 hover:text-brand-500">Nuestros Pilares</a>
+            <a href="#servicios" class="block py-2 text-slate-300 hover:text-brand-500">Servicios a Domicilio / Taller</a>
+            <a href="#galeria" class="block py-2 text-slate-300 hover:text-brand-500">Galería de Trabajos</a>
+            <a href="#proceso" class="block py-2 text-slate-300 hover:text-brand-500">Cómo Trabajamos</a>
+            <a href="#testimonios" class="block py-2 text-slate-300 hover:text-brand-500">Opiniones</a>
+            <div class="pt-2 border-t border-slate-800 flex flex-col gap-2">
+                <a href="tel:56939610596" class="w-full bg-brand-950 text-white font-semibold py-3 rounded-xl text-center border border-slate-800 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-phone text-brand-500"></i> +56 9 3961 0596
+                </a>
+                <button onclick="openQuoteModal(); toggleMobileMenu();" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-semibold py-3 rounded-xl text-center shadow-lg shadow-brand-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-calculator"></i> Cotizar Online
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="inicio" class="relative pt-32 pb-20 md:pt-48 md:pb-32 hero-bg flex items-center min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-500 text-xs sm:text-sm font-semibold tracking-wide uppercase">
+                        <i class="fa-solid fa-crown"></i> El Castillo: Tu auto como una fortaleza
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                        Restauramos tu vehículo con <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-amber-300">calidad de taller</span> a domicilio o en nuestro local.
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal">
+                        Desabolladura express y pintura profesional con rigurosos estándares. 
+                        <strong class="text-white font-semibold">Tú eliges: vamos a tu hogar o recibimos tu auto en nuestro taller equipado.</strong>
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <button onclick="openQuoteModal()" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-brand-500/25 transition-all transform hover:-translate-y-1 text-center flex items-center justify-center gap-3 text-lg">
+                            <i class="fa-solid fa-calculator"></i> Solicitar Cotización
+                        </button>
+                        <a href="https://wa.me/56939610596?text=Hola,%20quisiera%20consultar%20por%20un%20presupuesto%20de%20desabolladura%20y%20pintura" target="_blank" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-emerald-600/25 transition-all transform hover:-translate-y-1 text-center flex items-center justify-center gap-3 text-lg">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> +56 9 3961 0596
+                        </a>
+                    </div>
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 text-center lg:text-left">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-white">+10 Años</p>
+                            <p class="text-xs sm:text-sm text-slate-400">De Experiencia</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-white">Domicilio / Taller</p>
+                            <p class="text-xs sm:text-sm text-slate-400">Doble Modalidad</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-white">Garantía</p>
+                            <p class="text-xs sm:text-sm text-slate-400">En Acabados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic Card -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-shield-halved text-brand-500"></i> Nuestro Compromiso Real
+                        </h3>
+                        <ul class="space-y-4 text-slate-300">
+                            <li class="flex items-start gap-3">
+                                <div class="bg-brand-500/20 text-brand-500 p-1.5 rounded-lg mt-0.5"><i class="fa-solid fa-clock"></i></div>
+                                <div>
+                                    <strong class="text-white block">Puntualidad Absoluta</strong>
+                                    <span class="text-sm text-slate-400">Respetamos tu tiempo. Llegamos a la hora acordada listos para trabajar.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="bg-brand-500/20 text-brand-500 p-1.5 rounded-lg mt-0.5"><i class="fa-solid fa-handshake"></i></div>
+                                <div>
+                                    <strong class="text-white block">Honestidad en el Presupuesto</strong>
+                                    <span class="text-sm text-slate-400">Sin cobros ocultos ni reparaciones innecesarias. Precios justos y transparentes.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="bg-brand-500/20 text-brand-500 p-1.5 rounded-lg mt-0.5"><i class="fa-solid fa-award"></i></div>
+                                <div>
+                                    <strong class="text-white block">Seriedad y Prolijidad</strong>
+                                    <span class="text-sm text-slate-400">Cuidamos tu vehículo como si fuera nuestro propio hogar. Trabajo limpio y ordenado.</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="mt-6 pt-6 border-t border-slate-800">
+                            <button onclick="openQuoteModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 rounded-xl transition flex items-center justify-center gap-2 text-sm border border-slate-700">
+                                <i class="fa-solid fa-bolt text-brand-500"></i> Cotiza ahora en menos de 1 minuto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="valores" class="py-20 bg-brand-900/50 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-brand-500 font-semibold text-sm tracking-wider uppercase">Por qué elegirnos</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Pilares que nos definen en cada servicio</h2>
+                <p class="text-slate-400 text-base sm:text-lg">Nos diferenciamos por brindar una experiencia confiable de taller mecánico tradicional, directamente en tu casa o lugar de trabajo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Value 1 -->
+                <div class="bg-brand-900/80 p-8 rounded-2xl border border-slate-800 hover:border-brand-500/50 transition duration-300 shadow-xl group">
+                    <div class="w-14 h-14 bg-brand-500/10 rounded-2xl flex items-center justify-center text-brand-500 text-2xl font-bold mb-6 group-hover:bg-brand-500 group-hover:text-white transition duration-300">
+                        <i class="fa-solid fa-stopwatch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Puntualidad</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Entendemos que tu agenda es valiosa. Programamos cada cita con exactitud y cumplimos rigurosamente con los plazos de entrega establecidos.
+                    </p>
+                </div>
+
+                <!-- Value 2 -->
+                <div class="bg-brand-900/80 p-8 rounded-2xl border border-slate-800 hover:border-brand-500/50 transition duration-300 shadow-xl group">
+                    <div class="w-14 h-14 bg-brand-500/10 rounded-2xl flex items-center justify-center text-brand-500 text-2xl font-bold mb-6 group-hover:bg-brand-500 group-hover:text-white transition duration-300">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Honestidad</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Diagnósticos claros y transparentes. Te decimos exactamente lo que tu vehículo necesita, sin sorpresas en el precio final ni cobros adicionales injustificados.
+                    </p>
+                </div>
+
+                <!-- Value 3 -->
+                <div class="bg-brand-900/80 p-8 rounded-2xl border border-slate-800 hover:border-brand-500/50 transition duration-300 shadow-xl group">
+                    <div class="w-14 h-14 bg-brand-500/10 rounded-2xl flex items-center justify-center text-brand-500 text-2xl font-bold mb-6 group-hover:bg-brand-500 group-hover:text-white transition duration-300">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Seriedad Profesional</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Herramientas profesionales, materiales de alta calidad y un trato respetuoso. Tratamos tu auto con el máximo cuidado y rigurosidad técnica.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-brand-500 font-semibold text-sm tracking-wider uppercase">Soluciones Flexibles</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Nuestros Servicios a Domicilio y en Taller</h2>
+                <p class="text-slate-400 text-base sm:text-lg">Realizamos trabajos de alta precisión en la comodidad de tu casa, o bien te recibimos en nuestro taller físico equipado para proyectos mayores.</p>
+            </div>
+
+            <!-- Taller vs Domicilio Highlight Banner -->
+            <div class="bg-gradient-to-r from-brand-900 to-brand-950 border border-brand-500/30 rounded-3xl p-8 mb-16 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="space-y-3 text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 text-xs font-semibold uppercase">
+                        <i class="fa-solid fa-house-chimney"></i> Modalidad a tu medida
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">¿Prefieres taller físico o visita a domicilio?</h3>
+                    <p class="text-slate-300 text-sm max-w-xl">
+                        Si tu reparación requiere condiciones de cabina especializada o prefieres no recibirnos en casa, <strong class="text-white">contamos con nuestro propio taller equipado</strong> para recibir tu vehículo con la misma seriedad y puntualidad.
+                    </p>
+                </div>
+                <button onclick="openQuoteModal()" class="whitespace-nowrap bg-brand-500 hover:bg-brand-600 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-brand-500/20 transition">
+                    <i class="fa-solid fa-calendar-check"></i> Consultar por Taller o Domicilio
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-brand-900/60 rounded-2xl border border-slate-800 overflow-hidden flex flex-col hover:border-slate-700 transition">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1613214149922-f1809c99b414?auto=format&fit=crop&w=600&q=80" alt="Desabolladura" class="w-full h-full object-cover transform hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/2a2a35/ffffff?text=Desabolladura'">
+                        <div class="absolute top-3 right-3 bg-brand-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-brand-400 border border-slate-800">
+                            Domicilio / Taller
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Desabolladura Fina</h3>
+                            <p class="text-slate-400 text-sm">Eliminación de abolladuras y golpes en puertas, tapabarros y piezas metálicas conservando la estructura original sin dañar en exceso.</p>
+                        </div>
+                        <button onclick="openQuoteModal()" class="w-full bg-slate-800 hover:bg-brand-500 hover:text-white text-slate-300 font-semibold py-2.5 rounded-xl transition text-sm flex items-center justify-center gap-2 border border-slate-700">
+                            Cotizar Servicio <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-brand-900/60 rounded-2xl border border-slate-800 overflow-hidden flex flex-col hover:border-slate-700 transition">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" alt="Pintura Automotriz" class="w-full h-full object-cover transform hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/2a2a35/ffffff?text=Pintura'">
+                        <div class="absolute top-3 right-3 bg-brand-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-brand-400 border border-slate-800">
+                            Domicilio / Taller
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Pintura Parcial y General</h3>
+                            <p class="text-slate-400 text-sm">Igualación exacta de tono mediante código de fábrica y espectrofotometría. Acabado brillante impecable con protección UV.</p>
+                        </div>
+                        <button onclick="openQuoteModal()" class="w-full bg-slate-800 hover:bg-brand-500 hover:text-white text-slate-300 font-semibold py-2.5 rounded-xl transition text-sm flex items-center justify-center gap-2 border border-slate-700">
+                            Cotizar Servicio <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-brand-900/60 rounded-2xl border border-slate-800 overflow-hidden flex flex-col hover:border-slate-700 transition">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=600&q=80" alt="Retoque de Parachoques" class="w-full h-full object-cover transform hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/2a2a35/ffffff?text=Parachoques'">
+                        <div class="absolute top-3 right-3 bg-brand-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-brand-400 border border-slate-800">
+                            Domicilio / Taller
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Reparación de Parachoques</h3>
+                            <p class="text-slate-400 text-sm">Solución de raspones profundos, quiebres plásticos y detalles estéticos en parachoques delanteros y traseros.</p>
+                        </div>
+                        <button onclick="openQuoteModal()" class="w-full bg-slate-800 hover:bg-brand-500 hover:text-white text-slate-300 font-semibold py-2.5 rounded-xl transition text-sm flex items-center justify-center gap-2 border border-slate-700">
+                            Cotizar Servicio <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Gallery Section (Trabajos Realizados / Fotos de Reparaciones y Pintura) -->
+    <section id="galeria" class="py-20 bg-brand-900/40 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-brand-500 font-semibold text-sm tracking-wider uppercase">Evidencia Real de Acabados</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Galería de Trabajos de Pintura y Carrocería</h2>
+                <p class="text-slate-400 text-base sm:text-lg">Explora nuestra muestra fotográfica de piezas repintadas, igualaciones exactas de color y procesos de desabolladura fina realizados en domicilio y taller.</p>
+            </div>
+
+            <!-- Categories Tabs filter indicator -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <span class="px-4 py-2 rounded-xl bg-brand-500 text-white text-xs font-bold uppercase tracking-wider shadow-md">Todos</span>
+                <span class="px-4 py-2 rounded-xl bg-brand-900 text-slate-300 border border-slate-800 text-xs font-semibold uppercase tracking-wider">Pintura Parcial</span>
+                <span class="px-4 py-2 rounded-xl bg-brand-900 text-slate-300 border border-slate-800 text-xs font-semibold uppercase tracking-wider">Desabolladura</span>
+                <span class="px-4 py-2 rounded-xl bg-brand-900 text-slate-300 border border-slate-800 text-xs font-semibold uppercase tracking-wider">Igualación de Tono</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Gallery Item 1 -->
+                <div class="bg-brand-900/80 rounded-2xl border border-slate-800 overflow-hidden shadow-xl group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" alt="Pintura Puerta y Tapabarro" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x450/111116/d97706?text=Pintura+Puerta'">
+                        <div class="absolute bottom-3 left-3 bg-brand-950/80 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-semibold text-brand-500 border border-slate-800">
+                            Pintura y Horneo de Puerta
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <h3 class="text-lg font-bold text-white">Repintado Parcial con Tono Original</h3>
+                        <p class="text-slate-400 text-sm">Eliminación de raspones laterales y aplicación de bicapa con acabado brillante espejo.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="bg-brand-900/80 rounded-2xl border border-slate-800 overflow-hidden shadow-xl group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&q=80" alt="Reparación Capot" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x450/111116/d97706?text=Capot+Reparado'">
+                        <div class="absolute bottom-3 left-3 bg-brand-950/80 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-semibold text-brand-500 border border-slate-800">
+                            Pintura de Capot Completo
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <h3 class="text-lg font-bold text-white">Corrección de Daño por Piedras y Retoque</h3>
+                        <p class="text-slate-400 text-sm">Preparación de superficie, aplicación de primer anticorrosivo y pintura terminada.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="bg-brand-900/80 rounded-2xl border border-slate-800 overflow-hidden shadow-xl group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80" alt="Parachoques Retocado" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x450/111116/d97706?text=Parachoques'">
+                        <div class="absolute bottom-3 left-3 bg-brand-950/80 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-semibold text-brand-500 border border-slate-800">
+                            Pintura de Parachoques
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <h3 class="text-lg font-bold text-white">Pintura Sectorizada de Parachoques</h3>
+                        <p class="text-slate-400 text-sm">Desabolladura plástica y acabado de pintura texturizada y lisa según modelo.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="bg-brand-900/80 rounded-2xl border border-slate-800 overflow-hidden shadow-xl group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80" alt="Igualación de Tono" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x450/111116/d97706?text=Color+Exacto'">
+                        <div class="absolute bottom-3 left-3 bg-brand-950/80 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-semibold text-brand-500 border border-slate-800">
+                            Igualación Espectrofotométrica
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <h3 class="text-lg font-bold text-white">Calibración y Tono Exacto</h3>
+                        <p class="text-slate-400 text-sm">Garantizamos que no se note la diferencia de tono con el resto de la pintura de fábrica.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="bg-brand-900/80 rounded-2xl border border-slate-800 overflow-hidden shadow-xl group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=80" alt="Desabolladura Fina" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x450/111116/d97706?text=Desabolladura'">
+                        <div class="absolute bottom-3 left-3 bg-brand-950/80 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-semibold text-brand-500 border border-slate-800">
+                            Desabolladura y Pintura
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <h3 class="text-lg font-bold text-white">Recuperación de Línea Lateral</h3>
+                        <p class="text-slate-400 text-sm">Trabajo de precisión realizado en nuestro taller equipado para impactos medianos.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="bg-brand-900/80 rounded-2xl border border-slate-800 overflow-hidden shadow-xl group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=600&q=80" alt="Pulido y Protección" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x450/111116/d97706?text=Pulido'">
+                        <div class="absolute bottom-3 left-3 bg-brand-950/80 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-semibold text-brand-500 border border-slate-800">
+                            Pulido y Sellado Cerámico
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <h3 class="text-lg font-bold text-white">Brillo Final y Protección UV</h3>
+                        <p class="text-slate-400 text-sm">Terminación profesional de pintura con sellado cerámico para mayor durabilidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proceso" class="py-20 bg-brand-900/40 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-brand-500 font-semibold text-sm tracking-wider uppercase">Paso a Paso</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">¿Cómo funciona nuestro servicio a domicilio?</h2>
+                <p class="text-slate-400 text-base sm:text-lg">Un proceso rápido, transparente y diseñado para tu comodidad absoluta.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <!-- Step 1 -->
+                <div class="bg-brand-900/80 p-6 rounded-2xl border border-slate-800 text-center relative z-10">
+                    <div class="w-12 h-12 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 shadow-lg shadow-brand-500/20">1</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Envías Fotos</h3>
+                    <p class="text-slate-400 text-sm">Nos mandas fotos del daño por WhatsApp o a través de nuestro cotizador online.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-brand-900/80 p-6 rounded-2xl border border-slate-800 text-center relative z-10">
+                    <div class="w-12 h-12 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 shadow-lg shadow-brand-500/20">2</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Presupuesto Honesto</h3>
+                    <p class="text-slate-400 text-sm">Te entregamos una cotización clara y sin compromiso con fecha exacta.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-brand-900/80 p-6 rounded-2xl border border-slate-800 text-center relative z-10">
+                    <div class="w-12 h-12 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 shadow-lg shadow-brand-500/20">3</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Vamos a tu Domicilio</h3>
+                    <p class="text-slate-400 text-sm">Llegamos puntualmente al lugar acordado con todas las herramientas necesarias.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-brand-900/80 p-6 rounded-2xl border border-slate-800 text-center relative z-10">
+                    <div class="w-12 h-12 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 shadow-lg shadow-brand-500/20">4</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Vehículo Como Nuevo</h3>
+                    <p class="text-slate-400 text-sm">Revisas el trabajo terminado, realizamos entrega limpia y quedas 100% satisfecho.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonios" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-brand-500 font-semibold text-sm tracking-wider uppercase">Testimonios Reales</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Lo que dicen nuestros clientes</h2>
+                <p class="text-slate-400 text-base sm:text-lg">La puntualidad y honestidad de El Castillo avalan nuestro trabajo diario.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-brand-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 italic">"Increíble servicio. Llegaron a la hora exacta que habíamos acordado a mi casa. El trabajo de desabolladura en la puerta trasera quedó impecable. Muy serios y profesionales."</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand-500/20 text-brand-500 font-bold rounded-full flex items-center justify-center">CR</div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Carlos Ramírez</h4>
+                            <span class="text-xs text-slate-400">Cliente en Domicilio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-brand-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 italic">"Destaco la honestidad. Me orientaron sobre qué era reparable sin inventar daños adicionales. El color quedó exacto al original. 100% recomendado."</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand-500/20 text-brand-500 font-bold rounded-full flex items-center justify-center">MV</div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Marcela Valenzuela</h4>
+                            <span class="text-xs text-slate-400">Cliente en Domicilio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-brand-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 italic">"Muy cómodos para trabajar. Vinieron a mi oficina y mientras trabajaba me dejaron el parachoques impecable. Seriedad y limpieza total al terminar."</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand-500/20 text-brand-500 font-bold rounded-full flex items-center justify-center">FS</div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Felipe Soto</h4>
+                            <span class="text-xs text-slate-400">Cliente Corporativo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gradient-to-r from-brand-900 to-brand-950 border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">¿Tienes un golpe o rayón en tu auto?</h2>
+            <p class="text-slate-300 max-w-2xl mx-auto text-base sm:text-lg">Cotiza ahora de forma rápida y sin compromiso. Vamos a domicilio o te recibimos en nuestro taller con la máxima puntualidad y seriedad.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+                <button onclick="openQuoteModal()" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-brand-500/20 transition-all flex items-center justify-center gap-3 text-lg">
+                    <i class="fa-solid fa-calculator"></i> Cotizar Online Ahora
+                </button>
+                <a href="https://wa.me/56939610596?text=Hola,%20necesito%20una%20cotización%20rápida" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-emerald-600/20 transition-all flex items-center justify-center gap-3 text-lg">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> +56 9 3961 0596
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-950 border-t border-slate-900 py-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-brand-500 p-2 rounded-xl text-brand-950">
+                        <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
+                    <span class="text-lg font-bold text-white tracking-tight">EL CASTILLO</span>
+                </div>
+                <p class="text-slate-400">Servicio especializado de desabolladura y pintura a domicilio o en taller. Puntualidad, honestidad y seriedad garantizadas en cada proyecto.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4 text-base">Enlaces Rápidos</h4>
+                <ul class="space-y-2">
+                    <li><a href="#inicio" class="hover:text-brand-500 transition">Inicio</a></li>
+                    <li><a href="#valores" class="hover:text-brand-500 transition">Nuestros Pilares</a></li>
+                    <li><a href="#servicios" class="hover:text-brand-500 transition">Servicios</a></li>
+                    <li><a href="#galeria" class="hover:text-brand-500 transition">Galería</a></li>
+                    <li><a href="#proceso" class="hover:text-brand-500 transition">Cómo Trabajamos</a></li>
+                    <li><a href="#testimonios" class="hover:text-brand-500 transition">Opiniones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4 text-base">Contacto Directo</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-center gap-3"><a href="tel:56939610596" class="hover:text-brand-500 transition flex items-center gap-2"><i class="fa-solid fa-phone text-brand-500"></i> +56 9 3961 0596</a></li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-brand-500"></i> contacto@elcastillopintura.cl</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-brand-500"></i> Domicilio y Taller Propio</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-900 text-center text-xs text-slate-500">
+            &copy; 2026 El Castillo - Desabolladura y Pintura. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- Quote Modal -->
+    <div id="quote-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-brand-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeQuoteModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white bg-slate-800 p-2 rounded-full w-10 h-10 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="mb-6">
+                <span class="text-brand-500 text-xs font-semibold uppercase tracking-wider">Cotización Rápida a Domicilio</span>
+                <h3 class="text-2xl font-bold text-white mt-1">Calcula tu Presupuesto</h3>
+                <p class="text-slate-400 text-sm mt-1">Completa los datos de tu vehículo y daño para enviarte una estimación inmediata.</p>
+            </div>
+
+            <form id="quote-form" onsubmit="handleQuoteSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 uppercase mb-1">Nombre y Apellido</label>
+                    <input type="text" required class="w-full bg-brand-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 text-sm" placeholder="Ej. Juan Pérez">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 uppercase mb-1">Teléfono / WhatsApp</label>
+                        <input type="tel" required class="w-full bg-brand-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 text-sm" placeholder="+56 9 ...">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 uppercase mb-1">Comuna / Sector</label>
+                        <input type="text" required class="w-full bg-brand-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 text-sm" placeholder="Ej. Ñuñoa, Las Condes...">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 uppercase mb-1">Tipo de Servicio Requerido</label>
+                    <select class="w-full bg-brand-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 text-sm">
+                        <option>Desabolladura Express (Domicilio o Taller)</option>
+                        <option>Pintura Parcial / Pieza (Domicilio o Taller)</option>
+                        <option>Pulido de Ópticos / Focos</option>
+                        <option>Reparación Completa en Taller</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 uppercase mb-1">Descripción del Daño</label>
+                    <textarea rows="3" required class="w-full bg-brand-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 text-sm" placeholder="Indica qué pieza está afectada (ej. parachoques trasero, puerta piloto) y el tamaño aprox..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-brand-500/20 text-center flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Enviar Solicitud de Cotización
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom MessageBox (instead of alert) -->
+    <div id="msg-box" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-brand-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl">
+            <div class="w-16 h-16 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white">¡Solicitud Recibida!</h3>
+            <p id="msg-text" class="text-slate-300 text-sm">Nos pondremos en contacto contigo a la brevedad con tu presupuesto detallado y disponibilidad horaria.</p>
+            <button onclick="closeMsgBox()" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 rounded-xl transition">
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Modal Controls
+        function openQuoteModal() {
+            document.getElementById('quote-modal').classList.remove('hidden');
+        }
+
+        function closeQuoteModal() {
+            document.getElementById('quote-modal').classList.add('hidden');
+        }
+
+        function handleQuoteSubmit(e) {
+            e.preventDefault();
+            closeQuoteModal();
+            document.getElementById('msg-box').classList.remove('hidden');
+            document.getElementById('quote-form').reset();
+        }
+
+        function closeMsgBox() {
+            document.getElementById('msg-box').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
